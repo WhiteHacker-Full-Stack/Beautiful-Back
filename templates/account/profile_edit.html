@@ -1,0 +1,64 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow">
+                <div class="card-header bg-light text-center">
+                    <h2 class="fw-bold">Edit Profile</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- Username -->
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+                        </div>
+
+                        <!-- First Name -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ user.profile.name }}" required>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="mb-3">
+                            <label for="surname" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="surname" name="surname" value="{{ user.profile.surname }}" required>
+                        </div>
+
+                        <!-- Birth Date -->
+                        <div class="mb-3">
+                            <label for="birth_date" class="form-label">Birth Date</label>
+                            <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ user.profile.birth_date }}" required>
+                        </div>
+
+                        <!-- Bio -->
+                        <div class="mb-3">
+                            <label for="bio" class="form-label">Bio</label>
+                            <textarea class="form-control" id="bio" name="bio" rows="4" required>{{ user.profile.bio }}</textarea>
+                        </div>
+
+                        <!-- Profile Image -->
+                        <div class="mb-3">
+                            <label for="img" class="form-label">Profile Picture</label>
+                            <input type="file" class="form-control" id="img" name="img">
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

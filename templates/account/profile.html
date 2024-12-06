@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mb-5">
+    <div class="row p-5" >
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{% if profile.img %}{{ profile.img.url }}{% else %}{% static 'default_profile_pic.jpg' %}{% endif %}" class="card-img-top" alt="Profile Picture">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ profile.user.username }}</h5>
+                    <p class="card-text">{{ profile.name }} {{ profile.surname }}</p>
+                    <p class="text-muted">{{ profile.bio }}</p>
+                    <p class="text-muted">Birth Date: {{ profile.birth_date }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Profile Details</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Username:</strong> {{ profile.user.username }}</li>
+                        <li class="list-group-item"><strong>Full Name:</strong> {{ profile.name }} {{ profile.surname }}</li>
+                        <li class="list-group-item"><strong>Bio:</strong> {{ profile.bio }}</li>
+                        <li class="list-group-item"><strong>Birth Date:</strong> {{ profile.birth_date }}</li>
+                        <li class="list-group-item"><a href="{% url 'profile_edit' %}">Profile yangilash</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    /* styles.css */
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+.list-group-item {
+    font-size: 1.1em;
+    padding: 15px;
+}
+
+</style>
+{% endblock %}

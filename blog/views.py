@@ -1,17 +1,19 @@
 from django.shortcuts import render
 
-from blog.models import Product, Category
+from blog.models import Product, Category, About
 
 
 # Create your views here.
 # 👉----------------------Pages--------------------------------------👈
 
 def index(request):
-    # categoryName = Category.objects.get(name = "carousel")
-    # carousel = Product.objects.filter(category= categoryName)
-    products = Product.objects.all()
+    carousel = Product.objects.filter(tag_type='carousel')
+    product = Product.objects.filter(tag_type='product')
+    about = About.objects.all()[0]
     context = {
-        'p': products,
+        'carousel': carousel,
+        'product': product,
+        'about': about
     }
 
 
