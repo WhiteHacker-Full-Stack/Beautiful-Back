@@ -5,7 +5,7 @@
     <div class="row p-5" >
         <div class="col-md-4">
             <div class="card">
-                <img src="{% if profile.img %}{{ profile.img.url }}{% else %}{% static 'default_profile_pic.jpg' %}{% endif %}" class="card-img-top" alt="Profile Picture">
+                <img src="{% if profile.img %}{{ profile.img.url }}{% else %}{% static 'images/img-2.png.jpg' %}{% endif %}" class="card-img-top" alt="Profile Picture">
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ profile.user.username }}</h5>
                     <p class="card-text">{{ profile.name }} {{ profile.surname }}</p>

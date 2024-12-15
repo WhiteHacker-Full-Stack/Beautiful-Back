@@ -4,7 +4,12 @@ from django.contrib.auth.models import User
 from .models import Profile
 # Create your views here.
 def profile_view(request):
-    profile = Profile.objects.get(user=request.user)
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except:
+        profile = Profile.objects.create(user=request.user)
+        profile.save()
+
     username = request.user.username
     context = {
         'profile': profile,
@@ -14,10 +19,10 @@ def profile_view(request):
 
 def profile_edit(request):
     profile = Profile.objects.get(user=request.user)
-    user = User.objects.get(user=profile.user)
+    user = User.objects.get(username=profile.user)
 
     if request.method == 'POST':
-        user.username = request.POST.get('user')
+        user.username = request.POST.get('username')
         profile.name = request.POST.get('name')
         profile.surname = request.POST.get('surname')
         profile.bio = request.POST.get('bio')
